@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Manager App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- header section -->
+  <header>
+    <h1>₹ Money Manager</h1>
+    <button id="openFormBtn">+ Add Transaction</button>
+  </header>
+
+<main>
+<!-- showing total income expense and balance -->
+  <div class="summary">
+    <div class="card" id="cardIncome">
+        <p>Total Income</p>
+        <h3 id="totalIncome">₹ 0.00</h3>
+    </div>
+    <div class="card" id="cardExpense">
+        <p>Total Expenses</p>
+        <h3 id="totalExpense">₹ 0.00</h3>
+    </div>
+    <div class="card" id="cardBalance">
+        <p>Net Balance</p>
+        <h3 id="netBalance">₹ 0.00</h3>
+    </div>
+  </div>
+
+<!-- filter and sort options -->
+  <div class="filters">
+    <select id="filterCategory">
+      <option value="">All Categories</option>
+      <option value="Income">Income</option>
+      <option value="Expense">Expense</option>
+    </select>
+
+    <select id="filterSubCategory">
+      <option value="">All Sub-Categories</option>
+    </select>
+
+    <input type="date" id="filterDateFrom">
+    <input type="date" id="filterDateTo">
+
+    <select id="sortBy">
+      <option value="">Sort By</option>
+      <option value="date-newest">Date: Newest First</option>
+      <option value="date-oldest">Date: Oldest First</option>
+      <option value="amount-high">Amount: High to Low</option>
+      <option value="amount-low">Amount: Low to High</option>
+    </select>
+
+    <button id="clearFiltersBtn">Clear</button>
+  </div>
+
+<!-- transaction history table -->
+  <div class="table-section">
+    <h2>Transaction History</h2>
+    <table id="transactionTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Sub-Category</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+<tbody id="transactionTableBody">
+<!-- js will add rows here -->
+</tbody>
+</table>
+
+<!-- show this when no transactions -->
+    <p id="emptyState">No transactions yet. Add one to get started!</p>
+  </div>
+</main>
+
+<!-- popup form for adding or editing transaction -->
+  <div class="overlay hidden" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-top">
+        <h2 id="modalTitle">Add Transaction</h2>
+        <button id="closeFormBtn">X</button>
+      </div>
+
+  <form id="transactionForm">
+    <div class="form-group">
+      <label for="amount">Amount *</label>
+      <input type="number" id="amount" placeholder="Enter amount">
+      <span class="err" id="amountError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date *</label>
+      <input type="date" id="date">
+      <span class="err" id="dateError"></span>
+    </div>
+
+<!-- radio buttons for income or expense -->
+  <div class="form-group">
+    <label>Category *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="category" value="Income"> Income</label>
+        <label><input type="radio" name="category" value="Expense"> Expense</label>
+      </div>
+    <span class="err" id="categoryError"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="subCategory">Sub-Category *</label>
+      <select id="subCategory">
+        <option value="">-- select category first --</option>
+      </select>
+    <span class="err" id="subCategoryError"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description (optional)</label>
+    <input type="text" id="description" placeholder="max 100 characters" maxlength="100">
+  </div>
+
+  <!-- this hidden input stores id when editing -->
+  <input type="hidden" id="editId" aria-hidden="true">
+  <div class="form-btns">
+    <button type="button" id="cancelFormBtn">Cancel</button>
+    <button type="submit" id="submitFormBtn">Save</button>
+  </div>
+  </form>
+</div>
+</div>
+
+  <!-- delete confirm popup -->
+  <div class="overlay hidden" id="deleteOverlay">
+    <div class="modal small-modal">
+      <h2>Are you sure?</h2>
+      <p>This will permanently delete the transaction.</p>
+      <div class="form-btns">
+        <button id="cancelDeleteBtn">Cancel</button>
+        <button id="confirmDeleteBtn" class="delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
