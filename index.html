@@ -8,81 +8,102 @@
 </head>
 <body>
 
-<!-- header section -->
+  <!-- header section -->
   <header>
     <h1>₹ Money Manager</h1>
     <button id="openFormBtn">+ Add Transaction</button>
   </header>
 
-<main>
-<!-- showing total income expense and balance -->
-  <div class="summary">
-    <div class="card" id="cardIncome">
+  <main>
+
+    <!-- summary cards -->
+    <div class="summary">
+      <div class="card" id="cardIncome">
         <p>Total Income</p>
         <h3 id="totalIncome">₹ 0.00</h3>
-    </div>
-    <div class="card" id="cardExpense">
+      </div>
+      <div class="card" id="cardExpense">
         <p>Total Expenses</p>
         <h3 id="totalExpense">₹ 0.00</h3>
-    </div>
-    <div class="card" id="cardBalance">
+      </div>
+      <div class="card" id="cardBalance">
         <p>Net Balance</p>
         <h3 id="netBalance">₹ 0.00</h3>
+      </div>
     </div>
-  </div>
 
-<!-- filter and sort options -->
-  <div class="filters">
-    <select id="filterCategory">
-      <option value="">All Categories</option>
-      <option value="Income">Income</option>
-      <option value="Expense">Expense</option>
-    </select>
+    <!-- filter and sort options -->
+    <div class="filters">
+      <div class="filter-item">
+        <label for="filterCategory">Category</label>
+        <select id="filterCategory">
+          <option value="">All Categories</option>
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
 
-    <select id="filterSubCategory">
-      <option value="">All Sub-Categories</option>
-    </select>
+      <div class="filter-item">
+        <label for="filterSubCategory">Sub-Category</label>
+        <select id="filterSubCategory">
+          <option value="">All Sub-Categories</option>
+        </select>
+      </div>
 
-    <input type="date" id="filterDateFrom">
-    <input type="date" id="filterDateTo">
+      <div class="filter-item">
+        <label for="filterDateFrom">From</label>
+        <input type="date" id="filterDateFrom">
+      </div>
 
-    <select id="sortBy">
-      <option value="">Sort By</option>
-      <option value="date-newest">Date: Newest First</option>
-      <option value="date-oldest">Date: Oldest First</option>
-      <option value="amount-high">Amount: High to Low</option>
-      <option value="amount-low">Amount: Low to High</option>
-    </select>
+      <div class="filter-item">
+        <label for="filterDateTo">To</label>
+        <input type="date" id="filterDateTo">
+      </div>
 
-    <button id="clearFiltersBtn">Clear</button>
-  </div>
+      <div class="filter-item">
+        <label for="sortBy">Sort By</label>
+        <select id="sortBy">
+          <option value="">Default</option>
+          <option value="date-newest">Date: Newest First</option>
+          <option value="date-oldest">Date: Oldest First</option>
+          <option value="amount-high">Amount: High to Low</option>
+          <option value="amount-low">Amount: Low to High</option>
+        </select>
+      </div>
 
-<!-- transaction history table -->
-  <div class="table-section">
-    <h2>Transaction History</h2>
-    <table id="transactionTable">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Sub-Category</th>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+      <div class="filter-item">
+        <label>&nbsp;</label>
+        <button id="clearFiltersBtn">Clear</button>
+      </div>
+    </div>
 
-<tbody id="transactionTableBody">
-<!-- js will add rows here -->
-</tbody>
-</table>
+    <!-- transaction history table -->
+    <div class="table-section">
+      <h2>Transaction History</h2>
+      <div class="table-wrapper">
+        <table id="transactionTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Sub-Category</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTableBody">
+            <!-- js will add rows here -->
+          </tbody>
+        </table>
+      </div>
+      <!-- show this when no transactions -->
+      <p id="emptyState">No transactions yet. Add one to get started!</p>
+    </div>
 
-<!-- show this when no transactions -->
-    <p id="emptyState">No transactions yet. Add one to get started!</p>
-  </div>
-</main>
+  </main>
 
-<!-- popup form for adding or editing transaction -->
+  <!-- popup form for adding or editing transaction -->
   <div class="overlay hidden" id="modalOverlay">
     <div class="modal">
       <div class="modal-top">
@@ -90,51 +111,52 @@
         <button id="closeFormBtn">X</button>
       </div>
 
-  <form id="transactionForm">
-    <div class="form-group">
-      <label for="amount">Amount *</label>
-      <input type="number" id="amount" placeholder="Enter amount">
-      <span class="err" id="amountError"></span>
+      <form id="transactionForm">
+        <div class="form-group">
+          <label for="amount">Amount *</label>
+          <input type="number" id="amount" placeholder="Enter amount">
+          <span class="err" id="amountError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input type="date" id="date">
+          <span class="err" id="dateError"></span>
+        </div>
+
+        <!-- radio buttons for income or expense -->
+        <div class="form-group">
+          <label id="categoryLabel">Category *</label>
+          <div class="radio-group" aria-labelledby="categoryLabel">
+            <label><input type="radio" name="category" value="Income"> Income</label>
+            <label><input type="radio" name="category" value="Expense"> Expense</label>
+          </div>
+          <span class="err" id="categoryError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="subCategory">Sub-Category *</label>
+          <select id="subCategory">
+            <option value="">-- select category first --</option>
+          </select>
+          <span class="err" id="subCategoryError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description (optional)</label>
+          <input type="text" id="description" placeholder="max 100 characters" maxlength="100">
+        </div>
+
+        <!-- hidden input stores id when editing -->
+        <input type="hidden" id="editId" aria-hidden="true">
+
+        <div class="form-btns">
+          <button type="button" id="cancelFormBtn">Cancel</button>
+          <button type="submit" id="submitFormBtn">Save</button>
+        </div>
+      </form>
     </div>
-
-    <div class="form-group">
-      <label for="date">Date *</label>
-      <input type="date" id="date">
-      <span class="err" id="dateError"></span>
-    </div>
-
-<!-- radio buttons for income or expense -->
-  <div class="form-group">
-    <label>Category *</label>
-      <div class="radio-group">
-        <label><input type="radio" name="category" value="Income"> Income</label>
-        <label><input type="radio" name="category" value="Expense"> Expense</label>
-      </div>
-    <span class="err" id="categoryError"></span>
   </div>
-
-  <div class="form-group">
-    <label for="subCategory">Sub-Category *</label>
-      <select id="subCategory">
-        <option value="">-- select category first --</option>
-      </select>
-    <span class="err" id="subCategoryError"></span>
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description (optional)</label>
-    <input type="text" id="description" placeholder="max 100 characters" maxlength="100">
-  </div>
-
-  <!-- this hidden input stores id when editing -->
-  <input type="hidden" id="editId" aria-hidden="true">
-  <div class="form-btns">
-    <button type="button" id="cancelFormBtn">Cancel</button>
-    <button type="submit" id="submitFormBtn">Save</button>
-  </div>
-  </form>
-</div>
-</div>
 
   <!-- delete confirm popup -->
   <div class="overlay hidden" id="deleteOverlay">
@@ -143,12 +165,12 @@
       <p>This will permanently delete the transaction.</p>
       <div class="form-btns">
         <button id="cancelDeleteBtn">Cancel</button>
-        <button id="confirmDeleteBtn" class="delete-btn">Delete</button>
+        <button id="confirmDeleteBtn">Delete</button>
       </div>
     </div>
   </div>
 
-<script type="module" src="app.js"></script>
+  <script type="module" src="app.js"></script>
 
 </body>
 </html>

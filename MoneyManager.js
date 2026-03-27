@@ -55,17 +55,14 @@ class MoneyManager {
     getTransactions(filters = {}) {
         let result = [...this.transactions];
 
-        // filter by category
         if (filters.category) {
             result = result.filter(t => t.category === filters.category);
         }
 
-        // filter by sub-category
         if (filters.subCategory) {
             result = result.filter(t => t.subCategory === filters.subCategory);
         }
 
-        // filter by date range
         if (filters.dateFrom) {
             result = result.filter(t => t.date >= filters.dateFrom);
         }
@@ -74,7 +71,6 @@ class MoneyManager {
             result = result.filter(t => t.date <= filters.dateTo);
         }
 
-        // sort
         if (filters.sortBy === "date-newest") {
             result.sort((a, b) => new Date(b.date) - new Date(a.date));
         } else if (filters.sortBy === "date-oldest") {

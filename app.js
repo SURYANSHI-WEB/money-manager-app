@@ -51,7 +51,6 @@ openFormBtn.addEventListener("click", () => {
     resetForm();
     modalTitle.textContent = "Add Transaction";
     modalOverlay.classList.remove("hidden");
-    // set today's date as default
     dateInput.value = new Date().toISOString().split("T")[0];
 });
 
@@ -150,10 +149,8 @@ transactionForm.addEventListener("submit", (e) => {
 
     try {
         if (editId) {
-            // update existing transaction
             manager.updateTransaction(parseInt(editId), amount, date, category, subCategory, description);
         } else {
-            // add new transaction
             manager.addTransaction(amount, date, category, subCategory, description);
         }
         closeModal();
@@ -174,7 +171,6 @@ function handleEdit(id) {
     amountInput.value = t.amount;
     dateInput.value = t.date;
 
-    // set correct radio button
     document.querySelectorAll("input[name='category']").forEach(radio => {
         radio.checked = radio.value === t.category;
     });
@@ -246,7 +242,6 @@ function renderTable() {
         tableBody.appendChild(row);
     });
 
-    // attach edit and delete listeners to each row
     tableBody.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", () => handleEdit(parseInt(btn.dataset.id)));
     });
@@ -265,7 +260,7 @@ function renderSummary() {
     const balance = manager.getNetBalance();
     netBalanceEl.textContent = "₹ " + balance.toFixed(2);
 
-    // change balance color based on positive or negative
+    // red if negative balance
     netBalanceEl.style.color = balance >= 0 ? "#838CE5" : "#e05a5a";
 }
 
@@ -276,17 +271,17 @@ function renderAll() {
     renderTable();
 }
 
-// ── reset form fields ──
+// ── reset form ──
 
 function resetForm() {
     transactionForm.reset();
     editIdInput.value = "";
     subCategorySelect.innerHTML = '<option value="">-- select category first --</option>';
 
-    // clear all error messages and highlights
     ["amountError", "dateError", "categoryError", "subCategoryError"].forEach(id => {
         document.getElementById(id).textContent = "";
     });
+
     amountInput.classList.remove("input-error");
     dateInput.classList.remove("input-error");
     subCategorySelect.classList.remove("input-error");
@@ -295,7 +290,6 @@ function resetForm() {
 // ── filter/sort listeners ──
 
 filterCategory.addEventListener("change", () => {
-    // update sub-category filter options based on selected category
     filterSubCategory.innerHTML = '<option value="">All Sub-Categories</option>';
     if (filterCategory.value && subCategories[filterCategory.value]) {
         subCategories[filterCategory.value].forEach(sub => {
