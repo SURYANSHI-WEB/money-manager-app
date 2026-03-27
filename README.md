@@ -1,10 +1,10 @@
 # Money Manager App
 
-A personal finance tracker web app built using HTML, CSS, and JavaScript as part of my Vineyard Capstone Project.
+A personal finance tracker web app built using HTML, CSS, and JavaScript.
 
 ---
 
-## What it does
+## Core Functions
 
 - Add, edit, and delete income/expense transactions
 - View total income, total expenses, and net balance
@@ -17,12 +17,12 @@ A personal finance tracker web app built using HTML, CSS, and JavaScript as part
 ## File Structure
 
 ```
-├── index.html        # main UI structure
-├── style.css         # all styling
-├── Transaction.js    # Transaction class (OOP)
-├── MoneyManager.js   # MoneyManager class - handles all CRUD and localStorage
-├── app.js            # DOM manipulation and event handling
-└── .gitignore
+├── index.html        // Core UI Structure
+├── style.css         // Aesthetic Layer
+├── Transaction.js    // Logic: Data Modeling (OOP)
+├── MoneyManager.js   // Logic: State & Storage Management
+├── app.js            // Interface: DOM Manipulation & Events
+└── .gitignore        // Environment Control
 ```
 
 ---
