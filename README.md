@@ -1,10 +1,10 @@
 # Money Manager App
 
-A personal finance tracker web app built using HTML, CSS, and JavaScript as part of my Vineyard Capstone Project.
+A personal finance tracker web app built using HTML, CSS, and JavaScript.
 
 ---
 
-## What it does
+## Core Functions
 
 - Add, edit, and delete income/expense transactions
 - View total income, total expenses, and net balance
@@ -17,12 +17,12 @@ A personal finance tracker web app built using HTML, CSS, and JavaScript as part
 ## File Structure
 
 ```
-├── index.html        # main UI structure
-├── style.css         # all styling
-├── Transaction.js    # Transaction class (OOP)
-├── MoneyManager.js   # MoneyManager class - handles all CRUD and localStorage
-├── app.js            # DOM manipulation and event handling
-└── .gitignore
+├── index.html        // Core UI Structure
+├── style.css         // Aesthetic Layer
+├── Transaction.js    // Logic: Data Modeling (OOP)
+├── MoneyManager.js   // Logic: State & Storage Management
+├── app.js            // Interface: DOM Manipulation & Events
+└── .gitignore        // Environment Control
 ```
 
 ---
@@ -30,22 +30,22 @@ A personal finance tracker web app built using HTML, CSS, and JavaScript as part
 ## How I built it
 
 ### HTML
-Structured the app into three main sections — summary cards, filter bar, and transaction table. Two popup modals handle adding/editing and delete confirmation.
+Structured the app into three main sections - summary cards, filter bar, and transaction table. Two popup modals handle adding/editing and delete confirmation.
 
 ### CSS
 Used a dark purple color scheme (`#0e0a1a` background, `#50207A`, `#D6B9FC`, `#838CE5` accents). Layout uses CSS Grid for the summary cards and Flexbox for the filter bar. Added a media query for responsiveness on smaller screens.
 
 ### JavaScript (OOP + ES6 Modules)
 
-**Transaction.js** — a simple class that represents one transaction with fields: id, amount, date, category, subCategory, description.
+**Transaction.js** - a simple class that represents one transaction with fields: id, amount, date, category, subCategory, description.
 
-**MoneyManager.js** — the main class that manages the transactions array. It handles:
+**MoneyManager.js** - the main class that manages the transactions array. It handles:
 - Loading and saving to localStorage
 - CRUD operations (add, update, delete, get)
 - Filtering and sorting
 - Calculating totals
 
-**app.js** — connects everything to the DOM. Handles all event listeners, form validation, rendering the table and summary cards.
+**app.js** - connects everything to the DOM. Handles all event listeners, form validation, rendering the table and summary cards.
 
 ---
 
