@@ -42,9 +42,9 @@ header button:hover {
 
 /* ── main ── */
 main {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 24px auto;
-    padding: 0 16px;
+    padding: 0 20px;
 }
 
 /* ── summary cards ── */
@@ -58,21 +58,13 @@ main {
 .card {
     background-color: #1a1030;
     border-radius: 8px;
-    padding: 16px;
+    padding: 20px 24px;
     border-left: 4px solid #50207A;
 }
 
-#cardIncome {
-    border-left-color: #838CE5;
-}
-
-#cardExpense {
-    border-left-color: #D6B9FC;
-}
-
-#cardBalance {
-    border-left-color: #50207A;
-}
+#cardIncome  { border-left-color: #838CE5; }
+#cardExpense { border-left-color: #D6B9FC; }
+#cardBalance { border-left-color: #50207A; }
 
 .card p {
     font-size: 12px;
@@ -89,21 +81,37 @@ main {
 .filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 24px;
+    align-items: flex-end;
 }
 
-.filters select,
-.filters input {
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-item label {
+    font-size: 11px;
+    color: #9880b8;
+}
+
+.filter-item select,
+.filter-item input[type="date"] {
     padding: 7px 10px;
     background-color: #1a1030;
     border: 1px solid #50207A;
     border-radius: 6px;
     color: #D6B9FC;
     font-size: 13px;
+    height: 36px;
+    width: 160px;
 }
 
 #clearFiltersBtn {
+    height: 36px;
+    width: 80px;
     padding: 7px 14px;
     background-color: #1a1030;
     border: 1px solid #50207A;
@@ -124,6 +132,10 @@ main {
     margin-bottom: 12px;
 }
 
+.table-wrapper {
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -131,6 +143,7 @@ table {
     border-radius: 8px;
     overflow: hidden;
     font-size: 13px;
+    min-width: 600px;
 }
 
 thead {
@@ -150,7 +163,6 @@ td {
     color: #e0d4f8;
 }
 
-/* income and expense amount colors */
 .income-amt {
     color: #838CE5;
     font-weight: 500;
@@ -183,15 +195,10 @@ td {
     font-size: 12px;
 }
 
-.edit-btn:hover {
-    background-color: #3a2a55;
-}
+.edit-btn:hover   { background-color: #3a2a55; }
+.delete-btn:hover { background-color: #3a1535; }
 
-.delete-btn:hover {
-    background-color: #3a1535;
-}
-
-/* empty state message */
+/* empty state */
 #emptyState {
     text-align: center;
     padding: 24px;
@@ -285,7 +292,6 @@ td {
     border-color: #838CE5;
 }
 
-/* highlight invalid fields */
 .input-error {
     border-color: #e05a5a !important;
 }
@@ -304,7 +310,6 @@ td {
     gap: 6px;
 }
 
-/* error messages */
 .err {
     font-size: 11px;
     color: #e05a5a;
@@ -359,7 +364,6 @@ td {
     background-color: #9a2020;
 }
 
-/* delete-btn class is reused in confirm modal too */
 .small-modal h2 {
     font-size: 15px;
     color: #D6B9FC;
@@ -371,21 +375,28 @@ td {
     color: #9880b8;
 }
 
-/* responsive */
-@media (max-width: 600px) {
+/* ── responsive ── */
+@media (max-width: 768px) {
+    header h1   { font-size: 16px; }
+    header button { font-size: 12px; padding: 6px 10px; }
+
+    main { padding: 0 12px; }
+
     .summary {
         grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    .filters {
-        flex-direction: column;
+    .card { padding: 14px 16px; }
+
+    .filter-item {
+        flex: 1 1 calc(50% - 12px);
     }
 
-    table {
-        font-size: 11px;
+    .filter-item select,
+    .filter-item input[type="date"] {
+        width: 100%;
     }
 
-    th, td {
-        padding: 8px 8px;
-    }
+    #clearFiltersBtn { width: 100%; }
 }
