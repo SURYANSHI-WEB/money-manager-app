@@ -77,6 +77,17 @@ main {
     color: #f0eaff;
 }
 
+/* ── chart container ── */
+/* moved this up here so it matches the html order */
+.chart-container {
+    background-color: #1a1030;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid #D6B9FC;
+    max-width: 400px;
+    margin: 0 auto 24px auto; /* centers it and adds bottom space */
+}
+
 /* ── filters ── */
 .filters {
     display: flex;
@@ -198,7 +209,7 @@ td {
 .edit-btn:hover   { background-color: #3a2a55; }
 .delete-btn:hover { background-color: #3a1535; }
 
-/* empty state */
+/* empty state message */
 #emptyState {
     text-align: center;
     padding: 24px;
@@ -375,10 +386,59 @@ td {
     color: #9880b8;
 }
 
+/* ── toast notification ── */
+#toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #838CE5; /* matches accent color */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+#toast.hidden {
+    opacity: 0;
+    bottom: 10px;
+    pointer-events: none;
+    display: block; /* overrides the default display: none from .hidden */
+    visibility: hidden;
+}
+
+#toast.show {
+    opacity: 1;
+    bottom: 30px;
+    visibility: visible;
+}
+
 /* ── responsive ── */
 @media (max-width: 768px) {
-    header h1   { font-size: 16px; }
-    header button { font-size: 12px; padding: 6px 10px; }
+    /* Stack header vertically on mobile */
+    header { 
+        flex-direction: column; 
+        gap: 12px; 
+    }
+    
+    /* Make buttons sit side-by-side evenly */
+    header div {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+    }
+    
+    header h1 { font-size: 20px; }
+    
+    header button { 
+        flex: 1; /* makes buttons equal width */
+        font-size: 12px; 
+        padding: 8px; 
+        margin-right: 0 !important; /* overrides the inline style */
+    }
 
     main { padding: 0 12px; }
 
